@@ -28,7 +28,7 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-            System.Windows.Forms.ListViewItem listViewItem2 = new System.Windows.Forms.ListViewItem("test1");
+            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem("test1");
             this.elementHost1 = new System.Windows.Forms.Integration.ElementHost();
             this.lblFirstName = new System.Windows.Forms.Label();
             this.lastName = new System.Windows.Forms.Label();
@@ -66,7 +66,6 @@
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripProgressBar1 = new System.Windows.Forms.ToolStripProgressBar();
-            this.btnNew = new System.Windows.Forms.Button();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -121,6 +120,7 @@
             this.txtFirstName.Size = new System.Drawing.Size(126, 20);
             this.txtFirstName.TabIndex = 2;
             this.txtFirstName.TextChanged += new System.EventHandler(this.txtFirstName_TextChanged);
+            this.txtFirstName.Leave += new System.EventHandler(this.Blank_Field);
             // 
             // txtLastName
             // 
@@ -191,6 +191,7 @@
             this.txtAddressLine1.Size = new System.Drawing.Size(223, 20);
             this.txtAddressLine1.TabIndex = 15;
             this.txtAddressLine1.TextChanged += new System.EventHandler(this.txtAddressLine1_TextChanged);
+            this.txtAddressLine1.Leave += new System.EventHandler(this.Blank_Field);
             // 
             // txtAddressLine2
             // 
@@ -211,6 +212,7 @@
             this.txtCity.Size = new System.Drawing.Size(126, 20);
             this.txtCity.TabIndex = 19;
             this.txtCity.TextChanged += new System.EventHandler(this.txtCity_TextChanged);
+            this.txtCity.Leave += new System.EventHandler(this.Blank_Field);
             // 
             // txtState
             // 
@@ -221,6 +223,7 @@
             this.txtState.Size = new System.Drawing.Size(26, 20);
             this.txtState.TabIndex = 21;
             this.txtState.TextChanged += new System.EventHandler(this.txtState_TextChanged);
+            this.txtState.Leave += new System.EventHandler(this.Blank_Field);
             // 
             // lblZipCode
             // 
@@ -241,6 +244,7 @@
             this.txtZipCode.Size = new System.Drawing.Size(84, 20);
             this.txtZipCode.TabIndex = 23;
             this.txtZipCode.TextChanged += new System.EventHandler(this.txtZipCode_TextChanged);
+            this.txtZipCode.Leave += new System.EventHandler(this.Blank_Field);
             // 
             // txtMiddleInitial
             // 
@@ -271,6 +275,7 @@
             this.txtEmail.Size = new System.Drawing.Size(223, 20);
             this.txtEmail.TabIndex = 12;
             this.txtEmail.TextChanged += new System.EventHandler(this.txtEmail_TextChanged);
+            this.txtEmail.Leave += new System.EventHandler(this.Blank_Field);
             // 
             // label10
             // 
@@ -291,6 +296,7 @@
             this.txtGender.Size = new System.Drawing.Size(20, 20);
             this.txtGender.TabIndex = 8;
             this.txtGender.TextChanged += new System.EventHandler(this.txtGender_TextChanged);
+            this.txtGender.Leave += new System.EventHandler(this.Blank_Field);
             // 
             // lblPhoneNo
             // 
@@ -311,6 +317,7 @@
             this.txtPhoneNo.Size = new System.Drawing.Size(126, 20);
             this.txtPhoneNo.TabIndex = 10;
             this.txtPhoneNo.MaskInputRejected += new System.Windows.Forms.MaskInputRejectedEventHandler(this.txtPhoneNo_MaskInputRejected);
+            this.txtPhoneNo.Leave += new System.EventHandler(this.Blank_Field);
             // 
             // cboProofAttached
             // 
@@ -325,6 +332,7 @@
             this.cboProofAttached.Size = new System.Drawing.Size(46, 21);
             this.cboProofAttached.TabIndex = 25;
             this.cboProofAttached.SelectedIndexChanged += new System.EventHandler(this.cboProofAttached_SelectedIndexChanged);
+            this.cboProofAttached.Leave += new System.EventHandler(this.Blank_Field);
             // 
             // lblDateReceived
             // 
@@ -345,6 +353,7 @@
             this.dateReceived.Size = new System.Drawing.Size(97, 20);
             this.dateReceived.TabIndex = 27;
             this.dateReceived.ValueChanged += new System.EventHandler(this.dateReceived_ValueChanged);
+            this.dateReceived.Leave += new System.EventHandler(this.Blank_Field);
             // 
             // btnSave
             // 
@@ -370,6 +379,7 @@
             // 
             // btnDelete
             // 
+            this.btnDelete.Enabled = false;
             this.btnDelete.Location = new System.Drawing.Point(309, 509);
             this.btnDelete.Margin = new System.Windows.Forms.Padding(2);
             this.btnDelete.Name = "btnDelete";
@@ -387,7 +397,7 @@
             this.lstViewNamePhone.FullRowSelect = true;
             this.lstViewNamePhone.HideSelection = false;
             this.lstViewNamePhone.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem2});
+            listViewItem1});
             this.lstViewNamePhone.Location = new System.Drawing.Point(421, 89);
             this.lstViewNamePhone.Margin = new System.Windows.Forms.Padding(2);
             this.lstViewNamePhone.MultiSelect = false;
@@ -440,21 +450,11 @@
             this.toolStripProgressBar1.Name = "toolStripProgressBar1";
             this.toolStripProgressBar1.Size = new System.Drawing.Size(100, 16);
             // 
-            // btnNew
-            // 
-            this.btnNew.Location = new System.Drawing.Point(421, 115);
-            this.btnNew.Name = "btnNew";
-            this.btnNew.Size = new System.Drawing.Size(262, 23);
-            this.btnNew.TabIndex = 33;
-            this.btnNew.Text = "New";
-            this.btnNew.UseVisualStyleBackColor = true;
-            // 
             // RebateForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(734, 661);
-            this.Controls.Add(this.btnNew);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.lstViewNamePhone);
             this.Controls.Add(this.btnDelete);
@@ -494,6 +494,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Rebate Form";
             this.Load += new System.EventHandler(this.RebateForm_Load);
+            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.RebateForm_KeyPress);
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
@@ -540,7 +541,6 @@
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
         private System.Windows.Forms.ToolStripProgressBar toolStripProgressBar1;
-        private System.Windows.Forms.Button btnNew;
     }
 }
 
