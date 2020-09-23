@@ -121,6 +121,7 @@ namespace RebateForm
 
         private void Clear_fields()
         {
+            lstViewNamePhone.SelectedItems.Clear();
             txtFirstName.Text = "";
             txtMiddleInitial.Text = "";
             txtLastName.Text = "";
@@ -139,6 +140,8 @@ namespace RebateForm
             strMode = "new";
             strFName = "";
             btnDelete.Enabled = false;
+
+ 
         }
 
         //---------------------------end------------------------------------//
@@ -198,7 +201,6 @@ namespace RebateForm
                     //Setting First charachter flag to false to record next first character input time.
                     fCharFlag = false;
                     intBackspaceCount = 0;
-                    Refresh_listView(dsRebates);
                 }
             }
             else
@@ -230,11 +232,12 @@ namespace RebateForm
                 strPhoneNo = "";
                 dsRebates.AcceptChanges();
                 Console.WriteLine("............edited changes Saved..........");
-                Clear_fields();
-                Refresh_listView(dsRebates);
+
 
             }
 
+            Clear_fields();
+            Refresh_listView(dsRebates);
             btnDelete.Enabled = false;
 
 
@@ -355,25 +358,18 @@ namespace RebateForm
                 }
 
             }
-
-            Console.WriteLine(strFName + strPhoneNo);
             btnDelete.Enabled = true;
-
-
 
         }
 
         private void btnClear_Click(object sender, EventArgs e)
         {
-            strMode = "new";
             Clear_fields();
             //Refresh_listView(dsRebates);
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            //
-
             foreach (DataRow dsRow in dsRebates.Tables["Rebates"].Rows)
             {
                 if ((dsRow[0].ToString() == strFName)&&(dsRow[9].ToString() == strPhoneNo))
@@ -381,13 +377,12 @@ namespace RebateForm
                     dsRow.Delete();
                     break;
                 }
-
-               // dsRebates.Tables["Rebates"].Rows.Remove[dsRow];
             }
             dsRebates.AcceptChanges();
-            //
+            
             Clear_fields();
             btnDelete.Enabled = false;
+            strMode = "new";
             WriteDataset("CS6326Asg2.txt", dsRebates);
             strFName ="";
             strPhoneNo = "";
