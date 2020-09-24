@@ -28,7 +28,6 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-            System.Windows.Forms.ListViewItem listViewItem1 = new System.Windows.Forms.ListViewItem("test1");
             this.elementHost1 = new System.Windows.Forms.Integration.ElementHost();
             this.lblFirstName = new System.Windows.Forms.Label();
             this.lastName = new System.Windows.Forms.Label();
@@ -49,11 +48,10 @@
             this.txtMiddleInitial = new System.Windows.Forms.TextBox();
             this.lblEmailId = new System.Windows.Forms.Label();
             this.txtEmail = new System.Windows.Forms.TextBox();
-            this.label10 = new System.Windows.Forms.Label();
+            this.lblGender = new System.Windows.Forms.Label();
             this.txtGender = new System.Windows.Forms.TextBox();
             this.lblPhoneNo = new System.Windows.Forms.Label();
             this.txtPhoneNo = new System.Windows.Forms.MaskedTextBox();
-            this.cboProofAttached = new System.Windows.Forms.ComboBox();
             this.lblDateReceived = new System.Windows.Forms.Label();
             this.dateReceived = new System.Windows.Forms.DateTimePicker();
             this.btnSave = new System.Windows.Forms.Button();
@@ -62,11 +60,10 @@
             this.lstViewNamePhone = new System.Windows.Forms.ListView();
             this.colName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colPhone = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.label1 = new System.Windows.Forms.Label();
+            this.lblProofAttached = new System.Windows.Forms.Label();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.toolStripProgressBar1 = new System.Windows.Forms.ToolStripProgressBar();
-            this.statusStrip1.SuspendLayout();
+            this.lblErrorMsg = new System.Windows.Forms.Label();
+            this.cbProofAttached = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // elementHost1
@@ -77,7 +74,6 @@
             this.elementHost1.Size = new System.Drawing.Size(652, 622);
             this.elementHost1.TabIndex = 0;
             this.elementHost1.Text = "elementHost1";
-            this.elementHost1.ChildChanged += new System.EventHandler<System.Windows.Forms.Integration.ChildChangedEventArgs>(this.elementHost1_ChildChanged);
             this.elementHost1.Child = null;
             // 
             // lblFirstName
@@ -120,7 +116,6 @@
             this.txtFirstName.Size = new System.Drawing.Size(126, 20);
             this.txtFirstName.TabIndex = 2;
             this.txtFirstName.TextChanged += new System.EventHandler(this.txtFirstName_TextChanged);
-            this.txtFirstName.Leave += new System.EventHandler(this.Blank_Field);
             // 
             // txtLastName
             // 
@@ -191,7 +186,6 @@
             this.txtAddressLine1.Size = new System.Drawing.Size(223, 20);
             this.txtAddressLine1.TabIndex = 15;
             this.txtAddressLine1.TextChanged += new System.EventHandler(this.txtAddressLine1_TextChanged);
-            this.txtAddressLine1.Leave += new System.EventHandler(this.Blank_Field);
             // 
             // txtAddressLine2
             // 
@@ -201,7 +195,6 @@
             this.txtAddressLine2.Name = "txtAddressLine2";
             this.txtAddressLine2.Size = new System.Drawing.Size(223, 20);
             this.txtAddressLine2.TabIndex = 17;
-            this.txtAddressLine2.TextChanged += new System.EventHandler(this.txtAddressLine2_TextChanged);
             // 
             // txtCity
             // 
@@ -212,7 +205,6 @@
             this.txtCity.Size = new System.Drawing.Size(126, 20);
             this.txtCity.TabIndex = 19;
             this.txtCity.TextChanged += new System.EventHandler(this.txtCity_TextChanged);
-            this.txtCity.Leave += new System.EventHandler(this.Blank_Field);
             // 
             // txtState
             // 
@@ -223,7 +215,7 @@
             this.txtState.Size = new System.Drawing.Size(26, 20);
             this.txtState.TabIndex = 21;
             this.txtState.TextChanged += new System.EventHandler(this.txtState_TextChanged);
-            this.txtState.Leave += new System.EventHandler(this.Blank_Field);
+            this.txtState.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtState_KeyPress);
             // 
             // lblZipCode
             // 
@@ -244,17 +236,17 @@
             this.txtZipCode.Size = new System.Drawing.Size(84, 20);
             this.txtZipCode.TabIndex = 23;
             this.txtZipCode.TextChanged += new System.EventHandler(this.txtZipCode_TextChanged);
-            this.txtZipCode.Leave += new System.EventHandler(this.Blank_Field);
+            this.txtZipCode.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtZipCode_KeyPress);
             // 
             // txtMiddleInitial
             // 
+            this.txtMiddleInitial.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtMiddleInitial.Location = new System.Drawing.Point(352, 87);
             this.txtMiddleInitial.Margin = new System.Windows.Forms.Padding(2);
             this.txtMiddleInitial.MaxLength = 1;
             this.txtMiddleInitial.Name = "txtMiddleInitial";
             this.txtMiddleInitial.Size = new System.Drawing.Size(20, 20);
             this.txtMiddleInitial.TabIndex = 4;
-            this.txtMiddleInitial.TextChanged += new System.EventHandler(this.txtMiddleInitial_TextChanged);
             // 
             // lblEmailId
             // 
@@ -275,20 +267,20 @@
             this.txtEmail.Size = new System.Drawing.Size(223, 20);
             this.txtEmail.TabIndex = 12;
             this.txtEmail.TextChanged += new System.EventHandler(this.txtEmail_TextChanged);
-            this.txtEmail.Leave += new System.EventHandler(this.Blank_Field);
             // 
-            // label10
+            // lblGender
             // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(306, 115);
-            this.label10.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(42, 13);
-            this.label10.TabIndex = 7;
-            this.label10.Text = "Gender";
+            this.lblGender.AutoSize = true;
+            this.lblGender.Location = new System.Drawing.Point(306, 115);
+            this.lblGender.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblGender.Name = "lblGender";
+            this.lblGender.Size = new System.Drawing.Size(42, 13);
+            this.lblGender.TabIndex = 7;
+            this.lblGender.Text = "Gender";
             // 
             // txtGender
             // 
+            this.txtGender.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtGender.Location = new System.Drawing.Point(352, 111);
             this.txtGender.Margin = new System.Windows.Forms.Padding(2);
             this.txtGender.MaxLength = 1;
@@ -296,7 +288,7 @@
             this.txtGender.Size = new System.Drawing.Size(20, 20);
             this.txtGender.TabIndex = 8;
             this.txtGender.TextChanged += new System.EventHandler(this.txtGender_TextChanged);
-            this.txtGender.Leave += new System.EventHandler(this.Blank_Field);
+            this.txtGender.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtGender_KeyPress);
             // 
             // lblPhoneNo
             // 
@@ -312,27 +304,11 @@
             // 
             this.txtPhoneNo.Location = new System.Drawing.Point(149, 135);
             this.txtPhoneNo.Margin = new System.Windows.Forms.Padding(2);
-            this.txtPhoneNo.Mask = "(999) 000-0000";
+            this.txtPhoneNo.Mask = "(999) 999-9999";
             this.txtPhoneNo.Name = "txtPhoneNo";
             this.txtPhoneNo.Size = new System.Drawing.Size(126, 20);
             this.txtPhoneNo.TabIndex = 10;
             this.txtPhoneNo.MaskInputRejected += new System.Windows.Forms.MaskInputRejectedEventHandler(this.txtPhoneNo_MaskInputRejected);
-            this.txtPhoneNo.Leave += new System.EventHandler(this.Blank_Field);
-            // 
-            // cboProofAttached
-            // 
-            this.cboProofAttached.AllowDrop = true;
-            this.cboProofAttached.FormattingEnabled = true;
-            this.cboProofAttached.Items.AddRange(new object[] {
-            "Yes",
-            "No"});
-            this.cboProofAttached.Location = new System.Drawing.Point(229, 366);
-            this.cboProofAttached.Margin = new System.Windows.Forms.Padding(2);
-            this.cboProofAttached.Name = "cboProofAttached";
-            this.cboProofAttached.Size = new System.Drawing.Size(46, 21);
-            this.cboProofAttached.TabIndex = 25;
-            this.cboProofAttached.SelectedIndexChanged += new System.EventHandler(this.cboProofAttached_SelectedIndexChanged);
-            this.cboProofAttached.Leave += new System.EventHandler(this.Blank_Field);
             // 
             // lblDateReceived
             // 
@@ -352,8 +328,6 @@
             this.dateReceived.Name = "dateReceived";
             this.dateReceived.Size = new System.Drawing.Size(97, 20);
             this.dateReceived.TabIndex = 27;
-            this.dateReceived.ValueChanged += new System.EventHandler(this.dateReceived_ValueChanged);
-            this.dateReceived.Leave += new System.EventHandler(this.Blank_Field);
             // 
             // btnSave
             // 
@@ -396,8 +370,6 @@
             this.colPhone});
             this.lstViewNamePhone.FullRowSelect = true;
             this.lstViewNamePhone.HideSelection = false;
-            this.lstViewNamePhone.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem1});
             this.lstViewNamePhone.Location = new System.Drawing.Point(421, 89);
             this.lstViewNamePhone.Margin = new System.Windows.Forms.Padding(2);
             this.lstViewNamePhone.MultiSelect = false;
@@ -418,43 +390,52 @@
             this.colPhone.Text = "Phone";
             this.colPhone.Width = 120;
             // 
-            // label1
+            // lblProofAttached
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(90, 369);
-            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(138, 13);
-            this.label1.TabIndex = 24;
-            this.label1.Text = "Proof of Purchase Attached";
+            this.lblProofAttached.AutoSize = true;
+            this.lblProofAttached.Location = new System.Drawing.Point(90, 369);
+            this.lblProofAttached.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblProofAttached.Name = "lblProofAttached";
+            this.lblProofAttached.Size = new System.Drawing.Size(138, 13);
+            this.lblProofAttached.TabIndex = 24;
+            this.lblProofAttached.Text = "Proof of Purchase Attached";
             // 
             // statusStrip1
             // 
-            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripStatusLabel1,
-            this.toolStripProgressBar1});
             this.statusStrip1.Location = new System.Drawing.Point(0, 639);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(734, 22);
             this.statusStrip1.TabIndex = 32;
             this.statusStrip1.Text = "statusStrip1";
             // 
-            // toolStripStatusLabel1
+            // lblErrorMsg
             // 
-            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(118, 17);
-            this.toolStripStatusLabel1.Text = "toolStripStatusLabel1";
+            this.lblErrorMsg.AutoSize = true;
+            this.lblErrorMsg.Location = new System.Drawing.Point(90, 438);
+            this.lblErrorMsg.Name = "lblErrorMsg";
+            this.lblErrorMsg.Size = new System.Drawing.Size(57, 13);
+            this.lblErrorMsg.TabIndex = 33;
+            this.lblErrorMsg.Text = "StatusMsg";
+            this.lblErrorMsg.Visible = false;
             // 
-            // toolStripProgressBar1
+            // cbProofAttached
             // 
-            this.toolStripProgressBar1.Name = "toolStripProgressBar1";
-            this.toolStripProgressBar1.Size = new System.Drawing.Size(100, 16);
+            this.cbProofAttached.AutoSize = true;
+            this.cbProofAttached.Location = new System.Drawing.Point(229, 368);
+            this.cbProofAttached.Name = "cbProofAttached";
+            this.cbProofAttached.Size = new System.Drawing.Size(44, 17);
+            this.cbProofAttached.TabIndex = 25;
+            this.cbProofAttached.Text = "Yes";
+            this.cbProofAttached.UseVisualStyleBackColor = true;
+            this.cbProofAttached.CheckedChanged += new System.EventHandler(this.cbProofAttached_CheckedChanged);
             // 
             // RebateForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(734, 661);
+            this.Controls.Add(this.cbProofAttached);
+            this.Controls.Add(this.lblErrorMsg);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.lstViewNamePhone);
             this.Controls.Add(this.btnDelete);
@@ -462,12 +443,11 @@
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.dateReceived);
             this.Controls.Add(this.lblDateReceived);
-            this.Controls.Add(this.cboProofAttached);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.lblProofAttached);
             this.Controls.Add(this.txtPhoneNo);
             this.Controls.Add(this.lblPhoneNo);
             this.Controls.Add(this.txtGender);
-            this.Controls.Add(this.label10);
+            this.Controls.Add(this.lblGender);
             this.Controls.Add(this.txtEmail);
             this.Controls.Add(this.lblEmailId);
             this.Controls.Add(this.txtMiddleInitial);
@@ -492,11 +472,9 @@
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "RebateForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Rebate Form";
+            this.Text = "RebateForm";
             this.Load += new System.EventHandler(this.RebateForm_Load);
             this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.RebateForm_KeyPress);
-            this.statusStrip1.ResumeLayout(false);
-            this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -523,7 +501,7 @@
 		private System.Windows.Forms.TextBox txtMiddleInitial;
 		private System.Windows.Forms.Label lblEmailId;
 		private System.Windows.Forms.TextBox txtEmail;
-		private System.Windows.Forms.Label label10;
+		private System.Windows.Forms.Label lblGender;
 		private System.Windows.Forms.TextBox txtGender;
 		private System.Windows.Forms.Label lblPhoneNo;
 		private System.Windows.Forms.MaskedTextBox txtPhoneNo;
@@ -535,12 +513,11 @@
 		private System.Windows.Forms.ListView lstViewNamePhone;
 		private System.Windows.Forms.ColumnHeader colName;
 		private System.Windows.Forms.ColumnHeader colPhone;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblProofAttached;
         private System.Windows.Forms.TextBox txtFirstName;
-        private System.Windows.Forms.ComboBox cboProofAttached;
         private System.Windows.Forms.StatusStrip statusStrip1;
-        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
-        private System.Windows.Forms.ToolStripProgressBar toolStripProgressBar1;
+        private System.Windows.Forms.Label lblErrorMsg;
+        private System.Windows.Forms.CheckBox cbProofAttached;
     }
 }
 

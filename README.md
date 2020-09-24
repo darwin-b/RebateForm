@@ -1,2 +1,5 @@
-# RebateForm
-Human Computer Interactions : Design Perspective from Cognitive psychology &amp; UX
+# RebateForm - ASg2-nxb200019
+
+Assumptions
+Gender can take only M/m F/f X/x
+
