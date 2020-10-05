@@ -33,7 +33,7 @@ namespace RebateForm
         System.Drawing.Color colorBlack = System.Drawing.Color.Black;
 
         //mode="neww" ==> saving new entry. mode="Edit" ==> editing already existing entry
-        private string strMode = "new";
+        private string strMode = "New";
 
 
         public RebateForm()
@@ -45,6 +45,7 @@ namespace RebateForm
         {
             if (firstTimeLoad)
             {
+                tssMode.Text = strMode;
                 dsRebates = io.ReadDataset("CS6326Asg2.txt");
                 firstTimeLoad = false;
             }
@@ -115,10 +116,11 @@ namespace RebateForm
             lblDateReceived.ForeColor = colorBlack;
 
             strPhoneNo = "";
-            strMode = "new";
+            strMode = "New";
             strFName = "";
             strID = "";
             this.ActiveControl = txtFirstName;
+            tssMode.Text = strMode;
             //btnSave.Enabled = false;
             btnDelete.Enabled = false;
 
@@ -183,7 +185,7 @@ namespace RebateForm
             }
             else
             {
-                if (strMode == "new")
+                if ((strMode == "New")) //&& (strID!=""))
                 {
                     foreach (DataRow dsRow in dsRebates.Tables["Rebates"].Rows)
                     {
@@ -229,7 +231,7 @@ namespace RebateForm
                                 (dsRow[16].ToString() != strID))
                             {
                                 validData = false;
-                                displayMessage("Data already exists", true, colorRed);
+                                displayMessage("Data already exists2", true, colorRed);
                             }
                         }
                     }
@@ -273,7 +275,7 @@ namespace RebateForm
                 }
             }
 
-
+            tssMode.Text = strMode;
 
         }
 
@@ -300,6 +302,7 @@ namespace RebateForm
             btnDelete.Enabled = false;
             io.WriteDataset("CS6326Asg2.txt", dsRebates);
             Refresh_listView(dsRebates);
+            tssMode.Text = strMode;
         }
 
         //----------------------Click Events End----------------------------//
@@ -309,16 +312,20 @@ namespace RebateForm
 
             if(lstViewNamePhone.SelectedItems.Count == 0)
             {
+
+                //Clear_fields();
                 lblErrorMsg.Visible = false;
                 btnDelete.Enabled = false;
                 strID = "";
+                strMode = "New";
+                tssMode.Text = strMode;
                 return;
             }
  
 
             lblErrorMsg.Visible = false;
             //Console.WriteLine("changed!");
-            strMode = "edit";
+            strMode = "Edit";
             foreach (ListViewItem item in lstViewNamePhone.SelectedItems)
             {
                 strFName = item.SubItems[0].Text;
@@ -351,7 +358,7 @@ namespace RebateForm
                     saveTime = dsRow[14].ToString();
                     intBackspaceCount = int.Parse(dsRow[15].ToString());
                     btnDelete.Enabled = true;
-            
+                    tssMode.Text = strMode;
                     return;
                 }
             }
@@ -365,6 +372,7 @@ namespace RebateForm
                 intBackspaceCount++;
             if (e.KeyChar == (char)13)
                 btnSave_Click(sender, e);
+            
         }
 
         private void RebateForm_KeyUp(object sender, KeyEventArgs e)

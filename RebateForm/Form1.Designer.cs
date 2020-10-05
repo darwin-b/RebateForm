@@ -63,14 +63,18 @@
             this.lblProofAttached = new System.Windows.Forms.Label();
             this.lblErrorMsg = new System.Windows.Forms.Label();
             this.cbProofAttached = new System.Windows.Forms.CheckBox();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.tssMode = new System.Windows.Forms.ToolStripStatusLabel();
+            this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // elementHost1
             // 
-            this.elementHost1.Location = new System.Drawing.Point(41, 11);
+            this.elementHost1.AutoSize = true;
+            this.elementHost1.Location = new System.Drawing.Point(0, 34);
             this.elementHost1.Margin = new System.Windows.Forms.Padding(2);
             this.elementHost1.Name = "elementHost1";
-            this.elementHost1.Size = new System.Drawing.Size(652, 622);
+            this.elementHost1.Size = new System.Drawing.Size(1, 1);
             this.elementHost1.TabIndex = 0;
             this.elementHost1.TabStop = false;
             this.elementHost1.Text = "elementHost1";
@@ -80,7 +84,7 @@
             // lblFirstName
             // 
             this.lblFirstName.AutoSize = true;
-            this.lblFirstName.Location = new System.Drawing.Point(90, 90);
+            this.lblFirstName.Location = new System.Drawing.Point(33, 81);
             this.lblFirstName.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblFirstName.Name = "lblFirstName";
             this.lblFirstName.Size = new System.Drawing.Size(57, 13);
@@ -91,7 +95,7 @@
             // 
             this.lastName.AccessibleName = "";
             this.lastName.AutoSize = true;
-            this.lastName.Location = new System.Drawing.Point(285, 90);
+            this.lastName.Location = new System.Drawing.Point(228, 81);
             this.lastName.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lastName.Name = "lastName";
             this.lastName.Size = new System.Drawing.Size(65, 13);
@@ -101,7 +105,7 @@
             // lblLastName
             // 
             this.lblLastName.AutoSize = true;
-            this.lblLastName.Location = new System.Drawing.Point(90, 115);
+            this.lblLastName.Location = new System.Drawing.Point(33, 106);
             this.lblLastName.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblLastName.Name = "lblLastName";
             this.lblLastName.Size = new System.Drawing.Size(58, 13);
@@ -110,7 +114,7 @@
             // 
             // txtFirstName
             // 
-            this.txtFirstName.Location = new System.Drawing.Point(149, 87);
+            this.txtFirstName.Location = new System.Drawing.Point(92, 78);
             this.txtFirstName.Margin = new System.Windows.Forms.Padding(2);
             this.txtFirstName.MaxLength = 20;
             this.txtFirstName.Name = "txtFirstName";
@@ -120,7 +124,7 @@
             // 
             // txtLastName
             // 
-            this.txtLastName.Location = new System.Drawing.Point(149, 111);
+            this.txtLastName.Location = new System.Drawing.Point(92, 102);
             this.txtLastName.Margin = new System.Windows.Forms.Padding(2);
             this.txtLastName.MaxLength = 20;
             this.txtLastName.Name = "txtLastName";
@@ -131,7 +135,7 @@
             // lblAddress
             // 
             this.lblAddress.AutoSize = true;
-            this.lblAddress.Location = new System.Drawing.Point(89, 213);
+            this.lblAddress.Location = new System.Drawing.Point(32, 204);
             this.lblAddress.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblAddress.Name = "lblAddress";
             this.lblAddress.Size = new System.Drawing.Size(48, 13);
@@ -141,7 +145,7 @@
             // lblAddressLine1
             // 
             this.lblAddressLine1.AutoSize = true;
-            this.lblAddressLine1.Location = new System.Drawing.Point(111, 235);
+            this.lblAddressLine1.Location = new System.Drawing.Point(54, 226);
             this.lblAddressLine1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblAddressLine1.Name = "lblAddressLine1";
             this.lblAddressLine1.Size = new System.Drawing.Size(36, 13);
@@ -151,7 +155,7 @@
             // lblAddressLine2
             // 
             this.lblAddressLine2.AutoSize = true;
-            this.lblAddressLine2.Location = new System.Drawing.Point(111, 259);
+            this.lblAddressLine2.Location = new System.Drawing.Point(54, 250);
             this.lblAddressLine2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblAddressLine2.Name = "lblAddressLine2";
             this.lblAddressLine2.Size = new System.Drawing.Size(36, 13);
@@ -161,7 +165,7 @@
             // lblState
             // 
             this.lblState.AutoSize = true;
-            this.lblState.Location = new System.Drawing.Point(111, 307);
+            this.lblState.Location = new System.Drawing.Point(54, 298);
             this.lblState.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblState.Name = "lblState";
             this.lblState.Size = new System.Drawing.Size(32, 13);
@@ -171,7 +175,7 @@
             // lblCity
             // 
             this.lblCity.AutoSize = true;
-            this.lblCity.Location = new System.Drawing.Point(111, 283);
+            this.lblCity.Location = new System.Drawing.Point(54, 274);
             this.lblCity.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblCity.Name = "lblCity";
             this.lblCity.Size = new System.Drawing.Size(24, 13);
@@ -180,7 +184,7 @@
             // 
             // txtAddressLine1
             // 
-            this.txtAddressLine1.Location = new System.Drawing.Point(149, 232);
+            this.txtAddressLine1.Location = new System.Drawing.Point(92, 223);
             this.txtAddressLine1.Margin = new System.Windows.Forms.Padding(2);
             this.txtAddressLine1.MaxLength = 35;
             this.txtAddressLine1.Name = "txtAddressLine1";
@@ -190,7 +194,7 @@
             // 
             // txtAddressLine2
             // 
-            this.txtAddressLine2.Location = new System.Drawing.Point(149, 256);
+            this.txtAddressLine2.Location = new System.Drawing.Point(92, 247);
             this.txtAddressLine2.Margin = new System.Windows.Forms.Padding(2);
             this.txtAddressLine2.MaxLength = 35;
             this.txtAddressLine2.Name = "txtAddressLine2";
@@ -199,7 +203,7 @@
             // 
             // txtCity
             // 
-            this.txtCity.Location = new System.Drawing.Point(149, 280);
+            this.txtCity.Location = new System.Drawing.Point(92, 271);
             this.txtCity.Margin = new System.Windows.Forms.Padding(2);
             this.txtCity.MaxLength = 25;
             this.txtCity.Name = "txtCity";
@@ -209,7 +213,7 @@
             // 
             // txtState
             // 
-            this.txtState.Location = new System.Drawing.Point(149, 304);
+            this.txtState.Location = new System.Drawing.Point(92, 295);
             this.txtState.Margin = new System.Windows.Forms.Padding(2);
             this.txtState.MaxLength = 2;
             this.txtState.Name = "txtState";
@@ -221,7 +225,7 @@
             // lblZipCode
             // 
             this.lblZipCode.AutoSize = true;
-            this.lblZipCode.Location = new System.Drawing.Point(234, 307);
+            this.lblZipCode.Location = new System.Drawing.Point(177, 298);
             this.lblZipCode.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblZipCode.Name = "lblZipCode";
             this.lblZipCode.Size = new System.Drawing.Size(50, 13);
@@ -230,7 +234,7 @@
             // 
             // txtZipCode
             // 
-            this.txtZipCode.Location = new System.Drawing.Point(288, 304);
+            this.txtZipCode.Location = new System.Drawing.Point(231, 295);
             this.txtZipCode.Margin = new System.Windows.Forms.Padding(2);
             this.txtZipCode.MaxLength = 9;
             this.txtZipCode.Name = "txtZipCode";
@@ -242,7 +246,7 @@
             // txtMiddleInitial
             // 
             this.txtMiddleInitial.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtMiddleInitial.Location = new System.Drawing.Point(352, 87);
+            this.txtMiddleInitial.Location = new System.Drawing.Point(295, 78);
             this.txtMiddleInitial.Margin = new System.Windows.Forms.Padding(2);
             this.txtMiddleInitial.MaxLength = 1;
             this.txtMiddleInitial.Name = "txtMiddleInitial";
@@ -252,7 +256,7 @@
             // lblEmailId
             // 
             this.lblEmailId.AutoSize = true;
-            this.lblEmailId.Location = new System.Drawing.Point(90, 162);
+            this.lblEmailId.Location = new System.Drawing.Point(33, 153);
             this.lblEmailId.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblEmailId.Name = "lblEmailId";
             this.lblEmailId.Size = new System.Drawing.Size(49, 13);
@@ -261,7 +265,7 @@
             // 
             // txtEmail
             // 
-            this.txtEmail.Location = new System.Drawing.Point(149, 159);
+            this.txtEmail.Location = new System.Drawing.Point(92, 150);
             this.txtEmail.Margin = new System.Windows.Forms.Padding(2);
             this.txtEmail.MaxLength = 60;
             this.txtEmail.Name = "txtEmail";
@@ -272,7 +276,7 @@
             // lblGender
             // 
             this.lblGender.AutoSize = true;
-            this.lblGender.Location = new System.Drawing.Point(306, 115);
+            this.lblGender.Location = new System.Drawing.Point(249, 106);
             this.lblGender.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblGender.Name = "lblGender";
             this.lblGender.Size = new System.Drawing.Size(42, 13);
@@ -282,7 +286,7 @@
             // txtGender
             // 
             this.txtGender.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
-            this.txtGender.Location = new System.Drawing.Point(352, 111);
+            this.txtGender.Location = new System.Drawing.Point(295, 102);
             this.txtGender.Margin = new System.Windows.Forms.Padding(2);
             this.txtGender.MaxLength = 1;
             this.txtGender.Name = "txtGender";
@@ -294,7 +298,7 @@
             // lblPhoneNo
             // 
             this.lblPhoneNo.AutoSize = true;
-            this.lblPhoneNo.Location = new System.Drawing.Point(90, 138);
+            this.lblPhoneNo.Location = new System.Drawing.Point(33, 129);
             this.lblPhoneNo.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblPhoneNo.Name = "lblPhoneNo";
             this.lblPhoneNo.Size = new System.Drawing.Size(55, 13);
@@ -303,7 +307,7 @@
             // 
             // txtPhoneNo
             // 
-            this.txtPhoneNo.Location = new System.Drawing.Point(149, 135);
+            this.txtPhoneNo.Location = new System.Drawing.Point(92, 126);
             this.txtPhoneNo.Margin = new System.Windows.Forms.Padding(2);
             this.txtPhoneNo.Mask = "(999) 000-0000";
             this.txtPhoneNo.Name = "txtPhoneNo";
@@ -314,7 +318,7 @@
             // lblDateReceived
             // 
             this.lblDateReceived.AutoSize = true;
-            this.lblDateReceived.Location = new System.Drawing.Point(146, 397);
+            this.lblDateReceived.Location = new System.Drawing.Point(89, 388);
             this.lblDateReceived.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblDateReceived.Name = "lblDateReceived";
             this.lblDateReceived.Size = new System.Drawing.Size(79, 13);
@@ -324,7 +328,7 @@
             // dateReceived
             // 
             this.dateReceived.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dateReceived.Location = new System.Drawing.Point(229, 391);
+            this.dateReceived.Location = new System.Drawing.Point(172, 382);
             this.dateReceived.Margin = new System.Windows.Forms.Padding(2);
             this.dateReceived.Name = "dateReceived";
             this.dateReceived.Size = new System.Drawing.Size(97, 20);
@@ -332,7 +336,7 @@
             // 
             // btnSave
             // 
-            this.btnSave.Location = new System.Drawing.Point(93, 509);
+            this.btnSave.Location = new System.Drawing.Point(35, 552);
             this.btnSave.Margin = new System.Windows.Forms.Padding(2);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(83, 40);
@@ -343,7 +347,7 @@
             // 
             // btnClear
             // 
-            this.btnClear.Location = new System.Drawing.Point(210, 509);
+            this.btnClear.Location = new System.Drawing.Point(152, 552);
             this.btnClear.Margin = new System.Windows.Forms.Padding(2);
             this.btnClear.Name = "btnClear";
             this.btnClear.Size = new System.Drawing.Size(65, 40);
@@ -355,7 +359,7 @@
             // btnDelete
             // 
             this.btnDelete.Enabled = false;
-            this.btnDelete.Location = new System.Drawing.Point(309, 509);
+            this.btnDelete.Location = new System.Drawing.Point(251, 552);
             this.btnDelete.Margin = new System.Windows.Forms.Padding(2);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(63, 40);
@@ -371,11 +375,11 @@
             this.colPhone});
             this.lstViewNamePhone.FullRowSelect = true;
             this.lstViewNamePhone.HideSelection = false;
-            this.lstViewNamePhone.Location = new System.Drawing.Point(421, 89);
+            this.lstViewNamePhone.Location = new System.Drawing.Point(364, 80);
             this.lstViewNamePhone.Margin = new System.Windows.Forms.Padding(2);
             this.lstViewNamePhone.MultiSelect = false;
             this.lstViewNamePhone.Name = "lstViewNamePhone";
-            this.lstViewNamePhone.Size = new System.Drawing.Size(262, 460);
+            this.lstViewNamePhone.Size = new System.Drawing.Size(262, 512);
             this.lstViewNamePhone.TabIndex = 31;
             this.lstViewNamePhone.UseCompatibleStateImageBehavior = false;
             this.lstViewNamePhone.View = System.Windows.Forms.View.Details;
@@ -395,7 +399,7 @@
             // lblProofAttached
             // 
             this.lblProofAttached.AutoSize = true;
-            this.lblProofAttached.Location = new System.Drawing.Point(90, 369);
+            this.lblProofAttached.Location = new System.Drawing.Point(33, 360);
             this.lblProofAttached.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblProofAttached.Name = "lblProofAttached";
             this.lblProofAttached.Size = new System.Drawing.Size(138, 13);
@@ -405,7 +409,7 @@
             // lblErrorMsg
             // 
             this.lblErrorMsg.AutoSize = true;
-            this.lblErrorMsg.Location = new System.Drawing.Point(90, 438);
+            this.lblErrorMsg.Location = new System.Drawing.Point(33, 440);
             this.lblErrorMsg.Name = "lblErrorMsg";
             this.lblErrorMsg.Size = new System.Drawing.Size(57, 13);
             this.lblErrorMsg.TabIndex = 33;
@@ -415,18 +419,36 @@
             // cbProofAttached
             // 
             this.cbProofAttached.AutoSize = true;
-            this.cbProofAttached.Location = new System.Drawing.Point(229, 368);
+            this.cbProofAttached.Location = new System.Drawing.Point(172, 359);
             this.cbProofAttached.Name = "cbProofAttached";
             this.cbProofAttached.Size = new System.Drawing.Size(15, 14);
             this.cbProofAttached.TabIndex = 25;
             this.cbProofAttached.UseVisualStyleBackColor = true;
             this.cbProofAttached.CheckedChanged += new System.EventHandler(this.cbProofAttached_CheckedChanged);
             // 
+            // statusStrip1
+            // 
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.tssMode});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 681);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(663, 22);
+            this.statusStrip1.TabIndex = 34;
+            this.statusStrip1.Text = "statusStrip1";
+            // 
+            // tssMode
+            // 
+            this.tssMode.Name = "tssMode";
+            this.tssMode.Size = new System.Drawing.Size(38, 17);
+            this.tssMode.Text = "Mode";
+            this.tssMode.ToolTipText = "Mode";
+            // 
             // RebateForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(734, 661);
+            this.ClientSize = new System.Drawing.Size(663, 703);
+            this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.cbProofAttached);
             this.Controls.Add(this.lblErrorMsg);
             this.Controls.Add(this.lstViewNamePhone);
@@ -468,6 +490,8 @@
             this.Load += new System.EventHandler(this.RebateForm_Load);
             this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.RebateForm_KeyPress);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.RebateForm_KeyUp);
+            this.statusStrip1.ResumeLayout(false);
+            this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -510,6 +534,8 @@
         private System.Windows.Forms.TextBox txtFirstName;
         private System.Windows.Forms.Label lblErrorMsg;
         private System.Windows.Forms.CheckBox cbProofAttached;
+        private System.Windows.Forms.StatusStrip statusStrip1;
+        private System.Windows.Forms.ToolStripStatusLabel tssMode;
     }
 }
 
