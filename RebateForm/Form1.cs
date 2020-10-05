@@ -202,8 +202,7 @@ namespace RebateForm
                         oData[14] = saveTime;
                         oData[15] = intBackspaceCount;
                         oData[16] = dsRebates.Tables["Rebates"].Rows.Count + 1;
-                        Console.WriteLine(oData[16]);
-
+                        
                         dsRebates.Tables["Rebates"].Rows.Add(oData);
                         io.WriteDataset("CS6326Asg2.txt", dsRebates);
                         //Setting First charachter flag to false to record next first character input time.
@@ -307,8 +306,6 @@ namespace RebateForm
 
         private void lstViewNamePhone_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //if (btnDelete.Enabled == true)
-            //    return;
 
             if(lstViewNamePhone.SelectedItems.Count == 0)
             {
@@ -317,11 +314,10 @@ namespace RebateForm
                 strID = "";
                 return;
             }
-                
-                
+ 
 
             lblErrorMsg.Visible = false;
-            Console.WriteLine("changed!");
+            //Console.WriteLine("changed!");
             strMode = "edit";
             foreach (ListViewItem item in lstViewNamePhone.SelectedItems)
             {
@@ -386,7 +382,7 @@ namespace RebateForm
             if (e.KeyCode == Keys.Left && btnDelete.Enabled == true)
                 this.ActiveControl = txtFirstName;
 
-            Console.WriteLine("key up");
+            //Console.WriteLine("key up");
             //this.ActiveControl = txtFirstName;
         }
 
@@ -651,12 +647,9 @@ namespace RebateForm
         }
 
 
-
-
         //--------------------Dynamic Check End-------------------------//
 
     }
-
 
 
     //------------Class for Reading & writing Data-----------------------//
