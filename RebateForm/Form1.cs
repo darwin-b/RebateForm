@@ -64,7 +64,7 @@ namespace RebateForm
                 li.SubItems.Add((string)dsRow[9]);
                 li.SubItems.Add((string)dsRow[2]);
                 li.SubItems.Add((string)dsRow[16]);
-                
+
             }
 
             //string strPathApp = System.IO.Path.GetDirectoryName(Application.ExecutablePath) + "\\";
@@ -119,6 +119,7 @@ namespace RebateForm
             strMode = "New";
             strFName = "";
             strID = "";
+            fCharFlag = false;
             this.ActiveControl = txtFirstName;
             tssMode.Text = strMode;
             //btnSave.Enabled = false;
@@ -204,7 +205,7 @@ namespace RebateForm
                         oData[14] = saveTime;
                         oData[15] = intBackspaceCount;
                         oData[16] = dsRebates.Tables["Rebates"].Rows.Count + 1;
-                        
+
                         dsRebates.Tables["Rebates"].Rows.Add(oData);
                         io.WriteDataset("CS6326Asg2.txt", dsRebates);
                         //Setting First charachter flag to false to record next first character input time.
@@ -231,7 +232,7 @@ namespace RebateForm
                                 (dsRow[16].ToString() != strID))
                             {
                                 validData = false;
-                                displayMessage("Data already exists2", true, colorRed);
+                                displayMessage("Data already exists", true, colorRed);
                             }
                         }
                     }
@@ -240,7 +241,7 @@ namespace RebateForm
                     {
                         foreach (DataRow dsRow in dsRebates.Tables["Rebates"].Rows)
                         {
-                            if ((dsRow[0].ToString() == strFName) && (dsRow[9].ToString() == strPhoneNo))
+                            if (dsRow[16].ToString() == strID)
                             {
                                 dsRow[0] = txtFirstName.Text;
                                 dsRow[1] = txtMiddleInitial.Text;
@@ -310,10 +311,11 @@ namespace RebateForm
         private void lstViewNamePhone_SelectedIndexChanged(object sender, EventArgs e)
         {
 
-            if(lstViewNamePhone.SelectedItems.Count == 0)
+            if (lstViewNamePhone.SelectedItems.Count == 0)
             {
 
-                //Clear_fields();
+                Clear_fields();
+                this.ActiveControl = lstViewNamePhone;
                 lblErrorMsg.Visible = false;
                 btnDelete.Enabled = false;
                 strID = "";
@@ -321,7 +323,7 @@ namespace RebateForm
                 tssMode.Text = strMode;
                 return;
             }
- 
+
 
             lblErrorMsg.Visible = false;
             //Console.WriteLine("changed!");
@@ -372,13 +374,13 @@ namespace RebateForm
                 intBackspaceCount++;
             if (e.KeyChar == (char)13)
                 btnSave_Click(sender, e);
-            
+
         }
 
         private void RebateForm_KeyUp(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Escape )
-                btnClear_Click(sender,e);
+            if (e.KeyCode == Keys.Escape)
+                btnClear_Click(sender, e);
         }
 
 
@@ -387,7 +389,7 @@ namespace RebateForm
         {
             if (e.KeyCode == Keys.Delete && btnDelete.Enabled == true)
                 btnDelete_Click(sender, e);
-            if (e.KeyCode == Keys.Left && btnDelete.Enabled == true)
+            if ((e.KeyCode == Keys.Left|| e.KeyCode == Keys.Right) && btnDelete.Enabled == true)
                 this.ActiveControl = txtFirstName;
 
             //Console.WriteLine("key up");
@@ -497,22 +499,11 @@ namespace RebateForm
 
         private void txtFirstName_TextChanged(object sender, EventArgs e)
         {
-
-            //Enable save button on non empty 
-            //btnSave.Enabled = txtFirstName.TextLength > 0 &&
-            //                txtLastName.TextLength > 0 &&
-            //                txtGender.TextLength > 0 &&
-            //                txtEmail.TextLength > 0 &&
-            //                txtAddressLine1.TextLength > 0 &&
-            //                txtCity.TextLength > 0 &&
-            //                txtState.TextLength > 0 &&
-            //                txtZipCode.TextLength > 0;
-
             // log time when first char entered in FirstName field
-            if (fCharFlag == false)
+            if (strMode=="New")
             {
                 fCharTime = DateTime.Now.ToString("HH:mm:ss");
-                fCharFlag = true;
+                //fCharFlag = true;
             }
 
             //Dynamic Check
@@ -670,7 +661,7 @@ namespace RebateForm
 
         public DataSet ReadDataset(string strFileName)
         {
-            string strPathApp =System.IO.Path.GetDirectoryName(Application.ExecutablePath)+"\\";
+            string strPathApp = System.IO.Path.GetDirectoryName(Application.ExecutablePath) + "\\";
             string strFilePath = strPathApp + strFileName;
 
             DataSet dsRebates = new DataSet();
