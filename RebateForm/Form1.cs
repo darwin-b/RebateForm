@@ -43,6 +43,7 @@ namespace RebateForm
 
         private void RebateForm_Load(object sender, EventArgs e)
         {
+            Console.WriteLine("loaded");
             if (firstTimeLoad)
             {
                 tssMode.Text = strMode;
@@ -119,6 +120,7 @@ namespace RebateForm
             strMode = "New";
             strFName = "";
             strID = "";
+            intBackspaceCount = 0;
             fCharFlag = false;
             this.ActiveControl = txtFirstName;
             tssMode.Text = strMode;
@@ -500,10 +502,10 @@ namespace RebateForm
         private void txtFirstName_TextChanged(object sender, EventArgs e)
         {
             // log time when first char entered in FirstName field
-            if (strMode=="New")
+            if ((fCharFlag == false) && (strMode=="New"))
             {
                 fCharTime = DateTime.Now.ToString("HH:mm:ss");
-                //fCharFlag = true;
+                fCharFlag = true;
             }
 
             //Dynamic Check
