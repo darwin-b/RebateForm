@@ -61,7 +61,6 @@
             this.colName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.colPhone = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.lblProofAttached = new System.Windows.Forms.Label();
-            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.lblErrorMsg = new System.Windows.Forms.Label();
             this.cbProofAttached = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
@@ -73,7 +72,9 @@
             this.elementHost1.Name = "elementHost1";
             this.elementHost1.Size = new System.Drawing.Size(652, 622);
             this.elementHost1.TabIndex = 0;
+            this.elementHost1.TabStop = false;
             this.elementHost1.Text = "elementHost1";
+            this.elementHost1.Visible = false;
             this.elementHost1.Child = null;
             // 
             // lblFirstName
@@ -304,7 +305,7 @@
             // 
             this.txtPhoneNo.Location = new System.Drawing.Point(149, 135);
             this.txtPhoneNo.Margin = new System.Windows.Forms.Padding(2);
-            this.txtPhoneNo.Mask = "(999) 999-9999";
+            this.txtPhoneNo.Mask = "(999) 000-0000";
             this.txtPhoneNo.Name = "txtPhoneNo";
             this.txtPhoneNo.Size = new System.Drawing.Size(126, 20);
             this.txtPhoneNo.TabIndex = 10;
@@ -379,6 +380,7 @@
             this.lstViewNamePhone.UseCompatibleStateImageBehavior = false;
             this.lstViewNamePhone.View = System.Windows.Forms.View.Details;
             this.lstViewNamePhone.SelectedIndexChanged += new System.EventHandler(this.lstViewNamePhone_SelectedIndexChanged);
+            this.lstViewNamePhone.KeyUp += new System.Windows.Forms.KeyEventHandler(this.RebateForm_KeyDelete);
             // 
             // colName
             // 
@@ -400,14 +402,6 @@
             this.lblProofAttached.TabIndex = 24;
             this.lblProofAttached.Text = "Proof of Purchase Attached";
             // 
-            // statusStrip1
-            // 
-            this.statusStrip1.Location = new System.Drawing.Point(0, 639);
-            this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(734, 22);
-            this.statusStrip1.TabIndex = 32;
-            this.statusStrip1.Text = "statusStrip1";
-            // 
             // lblErrorMsg
             // 
             this.lblErrorMsg.AutoSize = true;
@@ -423,9 +417,8 @@
             this.cbProofAttached.AutoSize = true;
             this.cbProofAttached.Location = new System.Drawing.Point(229, 368);
             this.cbProofAttached.Name = "cbProofAttached";
-            this.cbProofAttached.Size = new System.Drawing.Size(44, 17);
+            this.cbProofAttached.Size = new System.Drawing.Size(15, 14);
             this.cbProofAttached.TabIndex = 25;
-            this.cbProofAttached.Text = "Yes";
             this.cbProofAttached.UseVisualStyleBackColor = true;
             this.cbProofAttached.CheckedChanged += new System.EventHandler(this.cbProofAttached_CheckedChanged);
             // 
@@ -436,7 +429,6 @@
             this.ClientSize = new System.Drawing.Size(734, 661);
             this.Controls.Add(this.cbProofAttached);
             this.Controls.Add(this.lblErrorMsg);
-            this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.lstViewNamePhone);
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.btnClear);
@@ -475,6 +467,7 @@
             this.Text = "RebateForm";
             this.Load += new System.EventHandler(this.RebateForm_Load);
             this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.RebateForm_KeyPress);
+            this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.RebateForm_KeyUp);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -515,7 +508,6 @@
 		private System.Windows.Forms.ColumnHeader colPhone;
         private System.Windows.Forms.Label lblProofAttached;
         private System.Windows.Forms.TextBox txtFirstName;
-        private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.Label lblErrorMsg;
         private System.Windows.Forms.CheckBox cbProofAttached;
     }

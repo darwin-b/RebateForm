@@ -1,4 +1,10 @@
-﻿using System;
+﻿/*
+Written by Nikhil Darwin Bollepalli for CS6326, assignment 2, starting september 20, 2017.
+    NetID: NXB200019
+    
+*/
+
+using System;
 using System.Data;
 using System.IO;
 using System.Windows.Forms;
@@ -18,6 +24,9 @@ namespace RebateForm
         private string saveTime;
         private string strFName;
         private string strPhoneNo;
+        private string strID;
+
+
         //private string strLName;
         System.Drawing.Color colorGreen = System.Drawing.Color.Green;
         System.Drawing.Color colorRed = System.Drawing.Color.Red;
@@ -40,11 +49,11 @@ namespace RebateForm
                 firstTimeLoad = false;
             }
             Refresh_listView(dsRebates);
+            this.ActiveControl = txtFirstName;
         }
 
 
         //--------------------defined form Methods------------------------------//
-
         private void Refresh_listView(DataSet dataSet)
         {
             lstViewNamePhone.Items.Clear();
@@ -53,7 +62,13 @@ namespace RebateForm
                 ListViewItem li = lstViewNamePhone.Items.Add((string)dsRow[0]);
                 li.SubItems.Add((string)dsRow[9]);
                 li.SubItems.Add((string)dsRow[2]);
+                li.SubItems.Add((string)dsRow[16]);
+                
             }
+
+            //string strPathApp = System.IO.Path.GetDirectoryName(Application.ExecutablePath) + "\\";
+            //displayMessage(strPathApp, true, colorGreen);
+
         }
 
         private void Clear_fields()
@@ -64,7 +79,6 @@ namespace RebateForm
             lblFirstName.ForeColor = colorBlack;
 
             txtMiddleInitial.Text = "";
-
 
             txtLastName.Text = "";
             lblLastName.ForeColor = colorBlack;
@@ -93,6 +107,7 @@ namespace RebateForm
             txtEmail.Text = "";
             lblEmailId.ForeColor = colorBlack;
 
+            cbProofAttached.Checked = false;
             cbProofAttached.Text = "";
             lblProofAttached.ForeColor = colorBlack;
 
@@ -102,6 +117,8 @@ namespace RebateForm
             strPhoneNo = "";
             strMode = "new";
             strFName = "";
+            strID = "";
+            this.ActiveControl = txtFirstName;
             //btnSave.Enabled = false;
             btnDelete.Enabled = false;
 
@@ -114,6 +131,7 @@ namespace RebateForm
             bool valid = txtFirstName.TextLength > 0 &&
                 txtLastName.TextLength > 0 &&
                 txtGender.TextLength > 0 &&
+                txtPhoneNo.TextLength > 0 &&
                 txtEmail.TextLength > 0 &&
                 txtAddressLine1.TextLength > 0 &&
                 txtCity.TextLength > 0 &&
@@ -155,7 +173,6 @@ namespace RebateForm
                 oData[11] = "Yes";
             else
                 oData[11] = "No";
-            //oData[11] = cboProofAttached.Text;
             oData[12] = dateReceived.Text;
 
             validData = Validate_Data();
@@ -164,109 +181,100 @@ namespace RebateForm
                 displayMessage("Required Data fields missing", true, colorRed);
                 return;
             }
-
-            if (strMode == "new")
-            {
-
-                foreach (DataRow dsRow in dsRebates.Tables["Rebates"].Rows)
-                {
-                    //----Check if Entry with Fname,Lname, phNo already exist------//
-                    if ((dsRow[0].ToString() == txtFirstName.Text) && (dsRow[2].ToString() == txtLastName.Text) && (dsRow[9].ToString() == txtPhoneNo.Text))
-                    {
-                        validData = false;
-                        //lblErrorMsg.ForeColor = System.Drawing.Color.Red;
-                        //lblErrorMsg.Text = "Data already exists";
-                        //lblErrorMsg.Visible = true;
-                        displayMessage("Data already exists", true, colorRed);
-                    }
-                }
-
-                if (validData)
-                {
-
-                    oData[13] = fCharTime;
-                    oData[14] = saveTime;
-                    oData[15] = intBackspaceCount;
-
-                    dsRebates.Tables["Rebates"].Rows.Add(oData);
-                    io.WriteDataset("CS6326Asg2.txt", dsRebates);
-                    //Setting First charachter flag to false to record next first character input time.
-                    fCharFlag = false;
-                    intBackspaceCount = 0;
-                    //lblErrorMsg.ForeColor = System.Drawing.Color.Green;
-                    //lblErrorMsg.Text = "New Data Saved! ";
-                    //lblErrorMsg.Visible = true;
-                    Clear_fields();
-                    displayMessage("New Data Saved! ", true, colorGreen);
-                    Refresh_listView(dsRebates);
-                    btnDelete.Enabled = false;
-
-                }
-            }
             else
             {
-
-                if (validData)
+                if (strMode == "new")
                 {
                     foreach (DataRow dsRow in dsRebates.Tables["Rebates"].Rows)
                     {
                         //----Check if Entry with Fname,Lname, phNo already exist------//
-                        if ((dsRow[0].ToString() == txtFirstName.Text) &&
-                            (dsRow[2].ToString() == txtLastName.Text) &&
-                            (dsRow[9].ToString() == txtPhoneNo.Text))
+                        if ((dsRow[0].ToString() == txtFirstName.Text) && (dsRow[2].ToString() == txtLastName.Text) && (dsRow[9].ToString() == txtPhoneNo.Text))
                         {
                             validData = false;
-                            //lblErrorMsg.ForeColor = System.Drawing.Color.Red;
-                            //lblErrorMsg.Text = "Data already exists";
-                            //lblErrorMsg.Visible = true;
                             displayMessage("Data already exists", true, colorRed);
+                            return;
                         }
                     }
-                }
 
-                if (validData)
-                {
-                    foreach (DataRow dsRow in dsRebates.Tables["Rebates"].Rows)
+                    if (validData)
                     {
-                        if ((dsRow[0].ToString() == strFName) && (dsRow[9].ToString() == strPhoneNo))
+                        oData[13] = fCharTime;
+                        oData[14] = saveTime;
+                        oData[15] = intBackspaceCount;
+                        oData[16] = dsRebates.Tables["Rebates"].Rows.Count + 1;
+                        Console.WriteLine(oData[16]);
+
+                        dsRebates.Tables["Rebates"].Rows.Add(oData);
+                        io.WriteDataset("CS6326Asg2.txt", dsRebates);
+                        //Setting First charachter flag to false to record next first character input time.
+                        fCharFlag = false;
+                        intBackspaceCount = 0;
+
+                        Clear_fields();
+                        displayMessage("New Data Saved! ", true, colorGreen);
+                        Refresh_listView(dsRebates);
+                        btnDelete.Enabled = false;
+
+                    }
+                }
+                else
+                {
+                    if (validData)
+                    {
+                        foreach (DataRow dsRow in dsRebates.Tables["Rebates"].Rows)
                         {
-                            dsRow[0] = txtFirstName.Text;
-                            dsRow[1] = txtMiddleInitial.Text;
-                            dsRow[2] = txtLastName.Text;
-                            dsRow[3] = txtAddressLine1.Text;
-                            dsRow[4] = txtAddressLine2.Text;
-                            dsRow[5] = txtCity.Text;
-                            dsRow[6] = txtState.Text;
-                            dsRow[7] = txtZipCode.Text;
-                            dsRow[8] = txtGender.Text;
-                            dsRow[9] = txtPhoneNo.Text;
-                            dsRow[10] = txtEmail.Text;
-                            if (cbProofAttached.Checked)
-                                dsRow[11] = "Yes";
-                            else
-                                dsRow[11] = "No";
-                            dsRow[12] = dateReceived.Text;
-                            break;
+                            //----Check if Entry with Fname,Lname, phNo already exist------//
+                            if ((dsRow[0].ToString() == txtFirstName.Text) &&
+                                (dsRow[2].ToString() == txtLastName.Text) &&
+                                (dsRow[9].ToString() == txtPhoneNo.Text) &&
+                                (dsRow[16].ToString() != strID))
+                            {
+                                validData = false;
+                                displayMessage("Data already exists", true, colorRed);
+                            }
                         }
                     }
 
-                    //lblErrorMsg.ForeColor = System.Drawing.Color.Green;
-                    //lblErrorMsg.Text = "Editted Data Saved! ";
-                    //lblErrorMsg.Visible = true;
+                    if (validData)
+                    {
+                        foreach (DataRow dsRow in dsRebates.Tables["Rebates"].Rows)
+                        {
+                            if ((dsRow[0].ToString() == strFName) && (dsRow[9].ToString() == strPhoneNo))
+                            {
+                                dsRow[0] = txtFirstName.Text;
+                                dsRow[1] = txtMiddleInitial.Text;
+                                dsRow[2] = txtLastName.Text;
+                                dsRow[3] = txtAddressLine1.Text;
+                                dsRow[4] = txtAddressLine2.Text;
+                                dsRow[5] = txtCity.Text;
+                                dsRow[6] = txtState.Text;
+                                dsRow[7] = txtZipCode.Text;
+                                dsRow[8] = txtGender.Text;
+                                dsRow[9] = txtPhoneNo.Text;
+                                dsRow[10] = txtEmail.Text;
+                                if (cbProofAttached.Checked)
+                                    dsRow[11] = "Yes";
+                                else
+                                    dsRow[11] = "No";
+                                dsRow[12] = dateReceived.Text;
+                                break;
+                            }
+                        }
 
-                    strFName = "";
-                    strPhoneNo = "";
-                    dsRebates.AcceptChanges();
-                    io.WriteDataset("CS6326Asg2.txt", dsRebates);
-                    Console.WriteLine("............edited changes Saved..........");
-                    Clear_fields();
-                    displayMessage("Editted Data Saved! ", true, colorGreen);
-                    Refresh_listView(dsRebates);
-                    btnDelete.Enabled = false;
+                        strFName = "";
+                        strPhoneNo = "";
+                        dsRebates.AcceptChanges();
+                        io.WriteDataset("CS6326Asg2.txt", dsRebates);
+                        Console.WriteLine("............edited changes Saved..........");
+                        Clear_fields();
+                        displayMessage("Editted Data Saved! ", true, colorGreen);
+                        Refresh_listView(dsRebates);
+                        btnDelete.Enabled = false;
+                    }
                 }
-
-
             }
+
+
 
         }
 
@@ -280,13 +288,9 @@ namespace RebateForm
         {
             foreach (DataRow dsRow in dsRebates.Tables["Rebates"].Rows)
             {
-                if ((dsRow[0].ToString() == strFName) && (dsRow[9].ToString() == strPhoneNo))
+                if (dsRow[16].ToString() == strID)
                 {
                     dsRow.Delete();
-                    //lblErrorMsg.ForeColor = System.Drawing.Color.Green;
-                    //lblErrorMsg.Text = "Data Deleted! ";
-                    //lblErrorMsg.Visible = true;
-
                     break;
                 }
             }
@@ -301,22 +305,34 @@ namespace RebateForm
 
         //----------------------Click Events End----------------------------//
 
-
-
         private void lstViewNamePhone_SelectedIndexChanged(object sender, EventArgs e)
         {
+            //if (btnDelete.Enabled == true)
+            //    return;
+
+            if(lstViewNamePhone.SelectedItems.Count == 0)
+            {
+                lblErrorMsg.Visible = false;
+                btnDelete.Enabled = false;
+                strID = "";
+                return;
+            }
+                
+                
+
             lblErrorMsg.Visible = false;
+            Console.WriteLine("changed!");
             strMode = "edit";
             foreach (ListViewItem item in lstViewNamePhone.SelectedItems)
             {
                 strFName = item.SubItems[0].Text;
                 strPhoneNo = item.SubItems[1].Text;
-                //strLName = item.SubItems[2].Text; 
+                strID = item.SubItems[3].Text;
             }
 
             foreach (DataRow dsRow in dsRebates.Tables["Rebates"].Rows)
             {
-                if ((dsRow[0].ToString() == strFName) && (dsRow[9].ToString() == strPhoneNo))
+                if (dsRow[16].ToString() == strID)
                 {
                     txtFirstName.Text = dsRow[0].ToString();
                     txtMiddleInitial.Text = dsRow[1].ToString();
@@ -334,29 +350,46 @@ namespace RebateForm
                     else
                         cbProofAttached.Checked = false;
 
-                    //cboProofAttached.Text = dsRow[11].ToString();
                     dateReceived.Text = dsRow[12].ToString();
                     fCharTime = dsRow[13].ToString();
                     saveTime = dsRow[14].ToString();
                     intBackspaceCount = int.Parse(dsRow[15].ToString());
+                    btnDelete.Enabled = true;
+            
+                    return;
                 }
-
             }
-            btnDelete.Enabled = true;
 
         }
 
 
         private void RebateForm_KeyPress(object sender, KeyPressEventArgs e)
         {
-            //if (Validate_Data())
-            //    btnSave.Enabled = true;
-            //else
-            //    btnSave.Enabled = false;
-            //lblErrorMsg.Visible = false;
             if (e.KeyChar == '\b')
                 intBackspaceCount++;
+            if (e.KeyChar == (char)13)
+                btnSave_Click(sender, e);
         }
+
+        private void RebateForm_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape )
+                btnClear_Click(sender,e);
+        }
+
+
+
+        private void RebateForm_KeyDelete(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Delete && btnDelete.Enabled == true)
+                btnDelete_Click(sender, e);
+            if (e.KeyCode == Keys.Left && btnDelete.Enabled == true)
+                this.ActiveControl = txtFirstName;
+
+            Console.WriteLine("key up");
+            //this.ActiveControl = txtFirstName;
+        }
+
 
 
         //------------------------Validations--------------------------------//
@@ -617,14 +650,14 @@ namespace RebateForm
 
         }
 
+
+
+
         //--------------------Dynamic Check End-------------------------//
 
-
-
-
-
-
     }
+
+
 
     //------------Class for Reading & writing Data-----------------------//
     public class IO
@@ -636,6 +669,9 @@ namespace RebateForm
 
         public DataSet ReadDataset(string strFileName)
         {
+            string strPathApp =System.IO.Path.GetDirectoryName(Application.ExecutablePath)+"\\";
+            string strFilePath = strPathApp + strFileName;
+
             DataSet dsRebates = new DataSet();
             dsRebates.Tables.Add("Rebates");
             dsRebates.Tables["Rebates"].Columns.Add("FName");
@@ -654,21 +690,29 @@ namespace RebateForm
             dsRebates.Tables["Rebates"].Columns.Add("FCharTime");
             dsRebates.Tables["Rebates"].Columns.Add("SaveTime");
             dsRebates.Tables["Rebates"].Columns.Add("BackspaceCount");
+            dsRebates.Tables["Rebates"].Columns.Add("ID");
 
 
-            if (File.Exists(strFileName))
+            if (File.Exists(strFilePath))
             {
-
-                //int rowId = 0;
+                int intId = 0;
                 StreamReader srFile = new StreamReader(strFileName);
                 while (!srFile.EndOfStream)
                 {
                     //Reading Linewise from text file -- trims any whitespace at start & end
                     string strLine = srFile.ReadLine().Trim();
 
-
                     //Adding Data read to Rebates Dataset
-                    dsRebates.Tables["Rebates"].Rows.Add(strLine.Split('\t'));
+                    DataRow dr = dsRebates.Tables["Rebates"].NewRow();
+                    int index = 0;
+
+                    for (; index < strLine.Split('\t').Length; index++)
+                    {
+                        dr[index] = strLine.Split('\t')[index];
+                    }
+                    dr[16] = intId;
+                    intId++;
+                    dsRebates.Tables["Rebates"].Rows.Add(dr);
 
                 }
                 srFile.Close();
@@ -676,7 +720,7 @@ namespace RebateForm
             }
             else
             {
-                StreamWriter swFile = new StreamWriter(strFileName);
+                StreamWriter swFile = new StreamWriter(strFilePath);
                 swFile.Close();
             }
 
@@ -687,21 +731,27 @@ namespace RebateForm
 
         public void WriteDataset(string strFileName, DataSet dataSet)
         {
-
+            string strPathApp = System.IO.Path.GetDirectoryName(Application.ExecutablePath) + "\\";
+            string strFilePath = strPathApp + strFileName;
             Console.WriteLine("Data Object Added.........Writing DataSet to file");
             String dataEntry = "";
+
             foreach (DataRow dsRow in dataSet.Tables["Rebates"].Rows)
             {
-                //Adding new line if not the first line of text
+                int intindex = 0;
                 if (dataEntry != "")
                     dataEntry = dataEntry + '\n';
                 foreach (object strRowitem in dsRow.ItemArray)
                 {
+                    if (intindex == 16)
+                        break;
                     if (strRowitem != DBNull.Value)
                         dataEntry = dataEntry + (string)strRowitem + '\t';
+                    intindex++;
                 }
             }
-            using (StreamWriter swFile = File.CreateText(strFileName))
+
+            using (StreamWriter swFile = File.CreateText(strFilePath))
             {
                 swFile.WriteLine(dataEntry);
             }
